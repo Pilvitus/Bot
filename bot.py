@@ -28,14 +28,15 @@ if __name__ == '__main__':
 
 
 
-from telegram.ext import Updater, CommandHandler, MessageHandler, filters
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, MessageHandler, CallbackContext
 
 # Функция для команды /start
-def start(update, context):
+def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('Привет! Я бот для курса математики 10-11 классов. Спрашивай меня о формулах, задачах и теории!')
 
-# Функция для обработки текстовых сообщений
-def handle_message(update, context):
+# Функция для обработки всех текстовых сообщений
+def handle_message(update: Update, context: CallbackContext) -> None:
     text = update.message.text.lower()  # Приводим текст к нижнему регистру для удобства обработки
     if "привет" in text:
         update.message.reply_text("Привет! Как могу помочь с математикой?")
@@ -45,7 +46,7 @@ def handle_message(update, context):
         update.message.reply_text("Я пока не знаю такой команды, но учусь :)")
 
 # Основная функция запуска бота
-def main():
+def main() -> None:
     # Вставь свой токен сюда
     TOKEN = "7876725841:AAH_XrZvJeiyqPtOwmfGZNIoacG7ZaI8W24"
 
@@ -59,15 +60,12 @@ def main():
     dp.add_handler(CommandHandler("start", start))
 
     # Регистрируем обработчик текстовых сообщений
-    dp.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+    dp.add_handler(MessageHandler(None, handle_message))  # Обработка всех текстовых сообщений
 
     # Запускаем бота
     updater.start_polling()
 
     # Бот будет работать, пока его не остановят
-    updater.idle()
+ 
 
-# Запускаем бота
-if __name__ == '__main__':
-    main()
 
