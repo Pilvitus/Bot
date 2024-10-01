@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
 
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackContext
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 
 # Функция для команды /start
 def start(update: Update, context: CallbackContext) -> None:
@@ -60,7 +60,7 @@ def main() -> None:
     dp.add_handler(CommandHandler("start", start))
 
     # Регистрируем обработчик текстовых сообщений
-    dp.add_handler(MessageHandler(filters.text & ~filters.command, handle_message))
+    dp.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_message))
 
     # Запускаем бота
     updater.start_polling()
