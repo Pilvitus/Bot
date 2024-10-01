@@ -28,7 +28,7 @@ if __name__ == '__main__':
 
 
 
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, filters
 
 # Функция для команды /start
 def start(update, context):
