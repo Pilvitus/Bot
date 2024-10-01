@@ -1,35 +1,9 @@
 import os
-import telebot
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackContext
 from flask import Flask, request
 
 app = Flask(__name__)
-bot = telebot.TeleBot(os.environ['TELEGRAM_TOKEN'])
-
-@app.route('/' + os.environ['TELEGRAM_TOKEN'], methods=['POST'])
-def get_message():
-    json_str = request.get_json(force=True)
-    update = telebot.types.Update.de_json(json_str)
-    bot.process_new_updates([update])
-    return '!', 200
-
-@app.route('/')
-def webhook():
-    return 'Webhook is set up!', 200
-
-if __name__ == '__main__':
-    bot.remove_webhook()
-    bot.set_webhook(url='https://<your-app-name>.railway.app/' + os.environ['TELEGRAM_TOKEN'])
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
-
-
-
-
-
-
-
-
-from telegram import Update
-from telegram.ext import Updater, CommandHandler, MessageHandler, CallbackContext
 
 # Функция для команды /start
 def start(update: Update, context: CallbackContext) -> None:
@@ -48,7 +22,7 @@ def handle_message(update: Update, context: CallbackContext) -> None:
 # Основная функция запуска бота
 def main() -> None:
     # Вставь свой токен сюда
-    TOKEN = "7876725841:AAH_XrZvJeiyqPtOwmfGZNIoacG7ZaI8W24"
+    TOKEN = os.environ['TELEGRAM_TOKEN']
 
     # Создаем объект Updater для связи с Telegram API
     updater = Updater(TOKEN)
@@ -60,12 +34,23 @@ def main() -> None:
     dp.add_handler(CommandHandler("start", start))
 
     # Регистрируем обработчик текстовых сообщений
-    dp.add_handler(MessageHandler(None, handle_message))  # Обработка всех текстовых сообщений
+    dp.add_handler(MessageHandler(filters.text & ~filters.command, handle_message))  # Обработка всех текстовых сообщений
 
     # Запускаем бота
     updater.start_polling()
+    updater.idle()  # Ожидаем завершения
 
-    # Бот будет работать, пока его не остановят
- 
+@app.route('/' + os.environ['TELEGRAM_TOKEN'], methods=['POST'])
+def webhook():
+    json_str = request.get_json(force=True)
+    update = Update.de_json(json_str, bot)
+    dp.process_update(update)
+    return '!', 200
 
+@app.route('/')
+def index():
+    return 'Webhook is set up!', 200
 
+if __name__ == '__main__':
+    main()
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
