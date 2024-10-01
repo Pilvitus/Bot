@@ -47,7 +47,7 @@ def handle_message(update, context):
 # Основная функция запуска бота
 def main():
     # Вставь свой токен сюда
-    updater = Updater("ТВОЙ_ТОКЕН", use_context=True)
+    updater = Updater("7876725841:AAH_XrZvJeiyqPtOwmfGZNIoacG7ZaI8W24", use_context=True)
     dp = updater.dispatcher
 
     # Добавление команд
