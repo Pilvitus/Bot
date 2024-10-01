@@ -1,6 +1,6 @@
 import os
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackContext
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -34,7 +34,7 @@ def main() -> None:
     dp.add_handler(CommandHandler("start", start))
 
     # Регистрируем обработчик текстовых сообщений
-    dp.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_message))  # Обработка всех текстовых сообщений
+    dp.add_handler(MessageHandler(filters.text & ~filters.command, handle_message))  # Обработка всех текстовых сообщений
 
     # Запускаем бота
     updater.start_polling()
