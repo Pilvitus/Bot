@@ -60,7 +60,7 @@ def main() -> None:
     dp.add_handler(CommandHandler("start", start))
 
     # Регистрируем обработчик текстовых сообщений
-    dp.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_message))
+    dp.add_handler(MessageHandler(filters.text & ~filters.command, handle_message))
 
     # Запускаем бота
     updater.start_polling()
