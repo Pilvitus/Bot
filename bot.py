@@ -17,5 +17,5 @@ def main():
     # Запускаем бота
     application.run_polling()
 
-if __name__ == '__main__':
+if __name__ == '@Matchematics_Bot':
     main()
