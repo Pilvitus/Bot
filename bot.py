@@ -22,7 +22,7 @@ def handle_message(update: Update, context: CallbackContext) -> None:
 # Основная функция запуска бота
 def main() -> None:
     # Вставь свой токен сюда
-    TOKEN = os.environ['TELEGRAM_TOKEN']
+    TOKEN = os.environ['7876725841:AAH_XrZvJeiyqPtOwmfGZNIoacG7ZaI8W24']
 
     # Создаем объект Updater для связи с Telegram API
     updater = Updater(TOKEN)
