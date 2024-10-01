@@ -1,1 +1,1 @@
-worker: phyton bot.py
+web: gunicorn bot:app
