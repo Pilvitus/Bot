@@ -6,15 +6,15 @@ async def start(update: Update, context):
     await update.message.reply_text(f'Привіт, {update.effective_user.first_name}, цей бот створенно для навчання з математики!')
 
 # Обрабатываем текстовые сообщения
-@bot.message_handler(func=lambda message: True)
-def handle_message(message):
-    text = message.text.lower()
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.lower()
+    
     if "привіт" in text:
-        bot.send_message(message.chat.id, "Привіт! Як я можу допомогти тобі з математикою?")
+        await update.message.reply_text("Привіт! Як я можу допомогти тобі з математикою?")
     elif "формула" in text:
-        bot.send_message(message.chat.id, "Можу підсказати формули по алгебрі та геометрії. Запитуй!")
+        await update.message.reply_text("Можу підсказати формули по алгебрі та геометрії. Запитуй!")
     else:
-        bot.send_message(message.chat.id, "Я поки не знаю цього, але я вчусь :)")
+        await update.message.reply_text("Я поки не знаю цього, але я вчусь :)")
 
 
 # Основная функция для запуска бота
