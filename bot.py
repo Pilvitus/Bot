@@ -1,5 +1,5 @@
 from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes
 
 # Функція для обробки команди /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -57,8 +57,8 @@ if __name__ == '__main__':
     app.add_handler(CommandHandler('task', task))
     app.add_handler(CommandHandler('quiz', quiz))
 
-    # Додаємо обробник текстових повідомлень
-    app.add_handler(MessageHandler(filters.text & ~filters.command, handle_message))
+    # Додаємо обробник текстових повідомлень без використання Filters
+    app.add_handler(MessageHandler(lambda update: True, handle_message))
 
     # Запускаємо бота
     app.run_polling()
