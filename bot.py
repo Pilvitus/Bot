@@ -5,10 +5,6 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-git add railway.json
-git commit -m "Add Railway environment variables"
-git push
-
 # Проверяем наличие переменной окружения TELEGRAM_TOKEN
 if 'TELEGRAM_TOKEN' not in os.environ:
     print("Ошибка: Переменная окружения TELEGRAM_TOKEN не установлена.")
