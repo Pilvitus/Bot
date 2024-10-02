@@ -1,5 +1,5 @@
 from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, Filters, ContextTypes
 
 # Функція для обробки команди /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -19,7 +19,6 @@ async def info(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # Функція для обробки команди /task
 async def task(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    # Наприклад, просте завдання
     task_text = "Розв'яжіть рівняння: 2x + 3 = 7"
     await update.message.reply_text(task_text)
 
@@ -34,6 +33,16 @@ async def quiz(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     await update.message.reply_text(quiz_text)
 
+# Обробляємо текстові повідомлення
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = update.message.text.lower()
+    if "привіт" in text:
+        await update.message.reply_text("Привіт! Як можу допомогти з математикою?")
+    elif "формула" in text:
+        await update.message.reply_text("Можу підказати формули по алгебрі та геометрії. Спрашивай!")
+    else:
+        await update.message.reply_text("Я поки не знаю такої команди, але вчуся :)")
+
 # Основна функція для запуску бота
 if __name__ == '__main__':
     # Вставте ваш токен нижче
@@ -47,6 +56,9 @@ if __name__ == '__main__':
     app.add_handler(CommandHandler('info', info))
     app.add_handler(CommandHandler('task', task))
     app.add_handler(CommandHandler('quiz', quiz))
+
+    # Додаємо обробник текстових повідомлень
+    app.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_message))
 
     # Запускаємо бота
     app.run_polling()
