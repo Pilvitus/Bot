@@ -37,5 +37,5 @@ def index():
 # Устанавливаем вебхук
 if __name__ == '__main__':
     bot.remove_webhook()
-    bot.set_webhook(url=f'https://bot-production-9fda.up.railway.app/{os.environ["TELEGRAM_TOKEN"]}')
+    bot.set_webhook(url=f'https://bot-production-9fda.up.railway.app/{os.environ["7876725841:AAH_XrZvJeiyqPtOwmfGZNIoacG7ZaI8W24"]}')
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
