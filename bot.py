@@ -3,13 +3,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, Con
 
 # Функція для обробки команди /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(f'Привіт, {update.effective_user.first_name}, цей бот допоможе вам вивчити математику!
-    Доступні команди:\n
-    /start - почати спілкування з ботом\n
-    /info - отримати інформацію про курс\n
-    /task - отримати випадкове завдання\n
-    /quiz - пройти тест\n
-    ')
+    await update.message.reply_text(f'Привіт, {update.effective_user.first_name}, цей бот створено для навчання з математики!')
 
 # Функція для обробки команди /info
 async def info(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -45,7 +39,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if "привіт" in text:
         await update.message.reply_text("Привіт! Як можу допомогти з математикою?")
     elif "формула" in text:
-        await update.message.reply_text("Можу підказати формули по алгебрі та геометрії. Запитуйй!")
+        await update.message.reply_text("Можу підказати формули по алгебрі та геометрії. Запитуй!")
     else:
         await update.message.reply_text("Я поки не знаю такої команди, але я вчуся :)")
 
