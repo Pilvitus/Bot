@@ -5,11 +5,6 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-# Проверяем наличие переменной окружения TELEGRAM_TOKEN
-if 'TELEGRAM_TOKEN' not in os.environ:
-    print("Ошибка: Переменная окружения TELEGRAM_TOKEN не установлена.")
-    sys.exit(1)
-
 bot = telebot.TeleBot(os.environ['TELEGRAM_TOKEN'])
 
 # Устанавливаем обработчик команды /start
