@@ -21,5 +21,5 @@ def index():
 # Устанавливаем вебхук
 if __name__ == '__main__':
     bot.remove_webhook()
-    bot.set_webhook(url=f'https://Bot.railway.app/{os.environ["TELEGRAM_TOKEN"]}')
+    bot.set_webhook(url=f'https://railway.app/project/e2efe715-d985-4283-90af-670b7e681cae{os.environ["TELEGRAM_TOKEN"]}')
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
