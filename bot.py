@@ -3,7 +3,7 @@ import telebot
 from flask import Flask, request
 
 app = Flask(__name__)
-bot = telebot.TeleBot(os.environ['TELEGRAM_TOKEN'])
+bot = telebot.TeleBot(os.environ['7876725841:AAH_XrZvJeiyqPtOwmfGZNIoacG7ZaI8W24'])
 
 # Устанавливаем обработчик команды /start
 @bot.message_handler(commands=['start'])
@@ -22,7 +22,7 @@ def handle_message(message):
         bot.send_message(message.chat.id, "Я пока не знаю такой команды, но учусь :)")
 
 # Устанавливаем маршрут для обработки сообщений от Telegram через вебхук
-@app.route('/' + os.environ['TELEGRAM_TOKEN'], methods=['POST'])
+@app.route('/' + os.environ['7876725841:AAH_XrZvJeiyqPtOwmfGZNIoacG7ZaI8W24'], methods=['POST'])
 def get_message():
     json_str = request.get_json(force=True)
     update = telebot.types.Update.de_json(json_str)
