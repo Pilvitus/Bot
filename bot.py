@@ -3,7 +3,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler
 
 # Функция для обработки команды /start
 async def start(update: Update, context):
-    await update.message.reply_text(f'Привет, {update.effective_user.first_name}!')
+    await update.message.reply_text(f'Привіт,цей бот створенно для твого навчання {update.effective_user.first_name}!')
 
 # Основная функция для запуска бота
 if __name__ == '__main__':
