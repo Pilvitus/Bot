@@ -39,9 +39,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if "привіт" in text:
         await update.message.reply_text("Привіт! Як можу допомогти з математикою?")
     elif "формула" in text:
-        await update.message.reply_text("Можу підказати формули по алгебрі та геометрії. Спрашивай!")
+        await update.message.reply_text("Можу підказати формули по алгебрі та геометрії. Запитуй!")
     else:
-        await update.message.reply_text("Я поки не знаю такої команди, але вчуся :)")
+        await update.message.reply_text("Я поки не знаю такої команди, але я вчуся :)")
 
 # Основна функція для запуску бота
 if __name__ == '__main__':
