@@ -3,7 +3,7 @@ import telebot
 from flask import Flask, request
 
 app = Flask(__name__)
-bot = telebot.TeleBot(os.environ['7876725841:AAH_XrZvJeiyqPtOwmfGZNIoacG7ZaI8W24'])
+bot = telebot.TeleBot(os.environ['TELEGRAM_TOKEN'])
 
 # Устанавливаем обработчик команды /start
 @bot.message_handler(commands=['start'])
@@ -22,7 +22,7 @@ def handle_message(message):
         bot.send_message(message.chat.id, "Я пока не знаю такой команды, но учусь :)")
 
 # Устанавливаем маршрут для обработки сообщений от Telegram через вебхук
-@app.route('/' + os.environ['7876725841:AAH_XrZvJeiyqPtOwmfGZNIoacG7ZaI8W24'], methods=['POST'])
+@app.route('/' + os.environ['TELEGRAM_TOKEN'], methods=['POST'])
 def get_message():
     json_str = request.get_json(force=True)
     update = telebot.types.Update.de_json(json_str)
@@ -37,5 +37,5 @@ def index():
 # Устанавливаем вебхук
 if __name__ == '__main__':
     bot.remove_webhook()
-    bot.set_webhook(url=f'https://bot-production-9fda.up.railway.app/{os.environ["7876725841:AAH_XrZvJeiyqPtOwmfGZNIoacG7ZaI8W24"]}')
+    bot.set_webhook(url=f'https://bot-production-9fda.up.railway.app/{os.environ["TELEGRAM_TOKEN"]}')
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
