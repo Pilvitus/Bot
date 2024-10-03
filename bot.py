@@ -3,7 +3,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, Con
 
 # Функція для обробки команди /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(f'Привіт, {update.effective_user.first_name}, цей бот створено для навчання з математики!')
+    await update.message.reply_text(f'Привіт, {update.effective_user.first_name}, цей бот створено для навчання математики!')
 
 # Функція для обробки команди /info
 async def info(update: Update, context: ContextTypes.DEFAULT_TYPE):
