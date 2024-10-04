@@ -17,10 +17,30 @@ async def info(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     await update.message.reply_text(info_text)
 
+import random
+from telegram import Update
+from telegram.ext import ContextTypes
+
 # Функція для обробки команди /task
 async def task(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    task_text = "Розв'яжіть рівняння: 2x + 3 = 7"
+    tasks = [
+        "Розв'яжіть рівняння: 2x + 3 = 7",
+        "Знайдіть похідну функції: f(x) = 3x^2 + 2x + 1",
+        "Вирішіть нерівність: 5x - 2 > 3",
+        "Обчисліть: 12 * 8 - 5",
+        "Знайдіть площу кола з радіусом 7 см",
+        "Розв'яжіть рівняння: 4x^2 - 16 = 0",
+        "Знайдіть інтеграл: ∫ (2x + 3) dx",
+        "Скільки буде 15% від 200?",
+        "Обчисліть значення виразу: (3 + 5) * 2 - 4"
+    ]
+
+    # Випадковий вибір завдання
+    task_text = random.choice(tasks)
+
+    # Відповідь на повідомлення
     await update.message.reply_text(task_text)
+
 
 # Функція для обробки команди /quiz
 async def quiz(update: Update, context: ContextTypes.DEFAULT_TYPE):
